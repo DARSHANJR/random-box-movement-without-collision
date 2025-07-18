@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multi Element Random Animation</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #f7f7f7;
+        }
+
+        .layer {
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            text-align: center;
+            line-height: 150px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+            font-family: sans-serif;
+            transition: transform 2s ease-in-out;
+        }
+
+        #box1 {
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+        }
+
+        #box2 {
+            background: linear-gradient(135deg, #ff5f6d, #ffc371);
+        }
+
+        #box3 {
+            background: linear-gradient(135deg, #7f00ff, #e100ff);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="box1" class="layer">DARSHAN J R</div>
+    <div id="box2" class="layer">RAMU K J</div>
+    <div id="box3" class="layer">DIVYANANDA VA</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const boxes = [
+                document.getElementById('box1'),
+                document.getElementById('box2'),
+                document.getElementById('box3')
+            ];
+
+            const boxWidth = 150;
+            const boxHeight = 150;
+
+            function moveBoxRandomly(box) {
+                const maxX = window.innerWidth - boxWidth;
+                const maxY = window.innerHeight - boxHeight;
+
+                const newX = Math.floor(Math.random() * maxX);
+                const newY = Math.floor(Math.random() * maxY);
+
+                const tiltX = Math.random() * 10 - 5;
+                const tiltY = Math.random() * 10 - 5;
+
+                box.style.transform = `translate(${newX}px, ${newY}px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+            }
+
+            function moveAllBoxes() {
+                boxes.forEach(box => moveBoxRandomly(box));
+            }
+
+            moveAllBoxes(); // Initial move
+            setInterval(moveAllBoxes, 3000); // Repeat every 3 seconds
+        });
+    </script>
+
+</body>
+</html>
